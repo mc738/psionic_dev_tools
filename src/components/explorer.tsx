@@ -2,6 +2,8 @@ import {TooltipProvider} from "./ui/tooltip";
 import {ResizableHandle, ResizablePanel, ResizablePanelGroup} from "./ui/resizable";
 import React from "react";
 import {cn} from "../lib/utils";
+import {Nav} from "./nav";
+import {AlertCircle, Archive, MessagesSquare, ShoppingCart, Users2} from "lucide-react";
 
 interface ExplorerProps {
     defaultLayout: number[]
@@ -47,6 +49,41 @@ export function Explorer(
                         "min-w-[50px] transition-all duration-300 ease-in-out"
                     )}
                 >
+                    <Nav
+                        isCollapsed={isCollapsed}
+                        links={[
+                            {
+                                title: "Social",
+                                label: "972",
+                                icon: Users2,
+                                variant: "ghost",
+                            },
+                            {
+                                title: "Updates",
+                                label: "342",
+                                icon: AlertCircle,
+                                variant: "ghost",
+                            },
+                            {
+                                title: "Forums",
+                                label: "128",
+                                icon: MessagesSquare,
+                                variant: "ghost",
+                            },
+                            {
+                                title: "Shopping",
+                                label: "8",
+                                icon: ShoppingCart,
+                                variant: "ghost",
+                            },
+                            {
+                                title: "Promotions",
+                                label: "21",
+                                icon: Archive,
+                                variant: "ghost",
+                            },
+                        ]}
+                    />
 
                 </ResizablePanel>
                 <ResizableHandle withHandle/>
