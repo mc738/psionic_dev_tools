@@ -4,6 +4,10 @@ import React from "react";
 import {cn} from "../lib/utils";
 import {Nav} from "./nav";
 import {AlertCircle, Archive, MessagesSquare, ShoppingCart, Users2} from "lucide-react";
+import dialog = Electron.dialog;
+import * as path from "node:path";
+
+import fs from "node:fs/promises";
 
 interface ExplorerProps {
     defaultLayout: number[]
@@ -11,6 +15,29 @@ interface ExplorerProps {
     navCollapsedSize: number
 }
 
+const loadFile = () => {
+
+    dialog.showOpenDialog({
+        title: "Explorer",
+        defaultPath: path.join("~", ""),
+        buttonLabel: "Load",
+        filters: [
+            {
+                name: "JSON Files",
+                extensions: ["json"],
+            }
+        ],
+        properties: []
+    }).then(file =>
+    {
+        fs.readFile(file.filePaths[0]).then((data) => {
+
+            console.log(data);
+        })
+    })
+
+    return ""
+}
 
 export function Explorer(
     {
@@ -88,6 +115,7 @@ export function Explorer(
                 </ResizablePanel>
                 <ResizableHandle withHandle/>
                 <ResizablePanel defaultSize={defaultLayout[1]}>
+                    <button onClick={loadFile}>lo</button>
                 </ResizablePanel>
             </ResizablePanelGroup>
         </TooltipProvider>
