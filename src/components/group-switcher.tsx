@@ -1,3 +1,7 @@
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "./ui/select";
+import React from "react";
+import {cn} from "../lib/utils";
+
 interface GroupSwitcherProps {
     isCollapsed: boolean;
     groups: {
@@ -12,6 +16,8 @@ export function GroupSwitcher(
         isCollapsed,
         groups
     }: GroupSwitcherProps) {
+    const [selectedGroup, setSelectedGroup] = React.useState<string>(groups[0].id)
+
     return (
         <Select defaultValue={selectedGroup} onValueChange={setSelectedGroup}>
             <SelectTrigger
